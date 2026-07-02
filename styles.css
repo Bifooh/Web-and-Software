@@ -48,16 +48,27 @@ button {
     font-family: inherit;
 }
 
+hr {
+    margin-bottom: 60px;
+    border: none;
+}
 
 /* Header */
 
 header {
-    width: min(var(--section-width), calc(100% - 40px));
+    width: min(calc(var(--section-width) + 200px), 100%);
     margin: 0 auto;
     padding: 24px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+
+    padding: 25px min(2%, 30px);
+
+    background-color: #ffffffbb;
+    backdrop-filter: blur(40px);
 }
 
 .brand {
@@ -96,6 +107,21 @@ header {
 
 .nav-links a {
     position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: var(--teal);
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: width 0.2s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .menu-button {
@@ -166,6 +192,13 @@ header {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(1.45rem, 3vw, 2rem);
     color: var(--navy);
+}
+
+.hero-description {
+    max-width: 500px;
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-dark);
 }
 
 .hero-details {
