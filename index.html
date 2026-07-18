@@ -6,6 +6,7 @@
     <title>Samuel Pereira</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="images/favicon.ico">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -64,83 +65,25 @@
                 </div>
 
                 <div class="carousel-controls">
-                <button aria-label="Previous project">←</button>
-                <button aria-label="Next project">→</button>
+                <button aria-label="Previous project" id="previous-btn">←</button>
+                <button aria-label="Next project" id="next-btn">→</button>
                 </div>
             </div>
 
             <div class="filter-pills">
-                <button class="pill active">All</button>
-                <button class="pill">Landing Page</button>
-                <button class="pill">Web App</button>
-                <button class="pill">Education</button>
-                <button class="pill">React</button>
-                <button class="pill">Node.js</button>
-                <button class="pill">JavaScript</button>
-                <button class="pill">Games</button>
+                <button class="pill active" data-filter="all">All</button>
+                <button class="pill" data-filter="Landing Page">Landing Page</button>
+                <button class="pill" data-filter="Web App">Web App</button>
+                <button class="pill" data-filter="Education">Education</button>
+                <button class="pill" data-filter="React">React</button>
+                <button class="pill" data-filter="Node.js">Node.js</button>
+                <button class="pill" data-filter="JS">JavaScript</button>
+                <button class="pill" data-filter="Game">Games</button>
             </div>
 
-            <div class="project-grid">
-                <article class="project-card">
-                <img src="images/harmons-project.png" alt="Harmon's Heating and Cooling project preview"/>
-
-                <div class="project-content">
-                    <p class="project-type">Landing Page</p>
-                    <h3>Harmon’s Heating & Cooling</h3>
-                    <p>
-                    Modern website for a local HVAC business focused on trust and mobile experience.
-                    </p>
-
-                    <div class="project-tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                    </div>
-
-                    <a href="#" class="project-link">View Project ↗</a>
-                </div>
-                </article>
-
-                <article class="project-card">
-                <img src="images/bfa-project.png" alt="Better Future Academy project preview" />
-
-                <div class="project-content">
-                    <p class="project-type">Web App</p>
-                    <h3>Better Future Academy</h3>
-                    <p>
-                    Education platform for English learners, mentors, scheduling, and practice tools.
-                    </p>
-
-                    <div class="project-tags">
-                    <span>React</span>
-                    <span>Node.js</span>
-                    <span>MySQL</span>
-                    </div>
-
-                    <a href="https://betterfutureacad.com/" class="project-link" target="_blank">View Project ↗</a>
-                </div>
-                </article>
-
-                <article class="project-card">
-                <img src="images/game-project.png" alt="Game project preview"/>
-
-                <div class="project-content">
-                    <p class="project-type">Game</p>
-                    <h3>Pixel Quest</h3>
-                    <p>
-                    Small 2D game experiment built with JavaScript and creative coding ideas.
-                    </p>
-
-                    <div class="project-tags">
-                    <span>JavaScript</span>
-                    <span>Canvas</span>
-                    <span>Games</span>
-                    </div>
-
-                    <a href="#" class="project-link">View Project ↗</a>
-                </div>
-                </article>
+            <div id="project-grid">
             </div>
+
             </section>
 
         <section id="about" class="section about-section">
