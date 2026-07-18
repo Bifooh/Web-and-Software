@@ -478,7 +478,7 @@ header {
 .site-footer {
     padding: 42px;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-columns: 1.1fr 1fr 1fr;
     gap: 28px;
     color: var(--white);
     background-color: var(--dark-navy);
@@ -541,7 +541,7 @@ header {
 /* Project Card animation */
 @keyframes projectCardFloatIn {
     from {
-        opacity: 0.2;
+        opacity: 0;
         transform: translateY(20px);
     }
 
@@ -553,7 +553,7 @@ header {
 
 .project-card.card-entrance {
     animation-name: projectCardFloatIn;
-    animation-duration: 0.5s;
+    animation-duration: 0.3s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
 

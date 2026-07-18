@@ -5,7 +5,7 @@ const projects = [
         description: "Education platform for English learners, mentors, scheduling, and practice tools",
         tags: ["React", "Node.js", "MySQL", "Education"],
         link: "https://www.betterfutureacad.com/",
-        imgsrc: "images/bfa-project.png",
+        imgsrc: "images/bfa-project.jpg",
         imgalt: "Better Future Academy"
     },
     {
@@ -14,7 +14,7 @@ const projects = [
         description: "Modern website for a local HVAC business focused on trust and mobile experience.",
         tags: ["HTML", "CSS", "JS"],
         link: "https://preview.harmonsheatingandair.com/",
-        imgsrc: "images/harmons-project.png",
+        imgsrc: "images/harmons-project.jpg",
         imgalt: "Harmon's Heating and Cooling project preview"
     },
     {
@@ -23,7 +23,7 @@ const projects = [
         description: "Showing the kind of fun you can fun while learning a language.",
         tags: ["Live Challenge", "React", "Node.js"],
         link: "https://demo.betterfutureacad.com/",
-        imgsrc: "images/spanish-challenge.png",
+        imgsrc: "images/spanish-challenge.jpg",
         imgalt: "Game example"
     },
         {
@@ -32,7 +32,7 @@ const projects = [
         description: "Small 2D game experiment built with JavaScript and creative coding ideas..",
         tags: ["JavaScript", "React", "Node.js"],
         link: "#",
-        imgsrc: "images/game-project.png",
+        imgsrc: "images/game-project.jpg",
         imgalt: "Game example"
     }
 ]
