@@ -1,11 +1,11 @@
 const projects = [
     {
         type: "Web App", 
-        title: "Better Future Academy", 
+        title: "BFA Web App", 
         description: "Education platform for English learners, mentors, scheduling, and practice tools",
         tags: ["React", "Node.js", "MySQL", "Education"],
-        link: "https://www.betterfutureacad.com/",
-        imgsrc: "images/bfa-project.jpg",
+        link: "https://beta.betterfutureacad.com",
+        imgsrc: "images/bfa-app.jpg",
         imgalt: "Better Future Academy"
     },
     {
@@ -34,7 +34,17 @@ const projects = [
         link: "#",
         imgsrc: "images/game-project.jpg",
         imgalt: "Game example"
-    }
+    },
+
+        {
+        type: "Landing Page", 
+        title: "Better Future Academy", 
+        description: "Education platform for English learners, mentors, scheduling, and practice tools",
+        tags: ["JavaScript", "HTML", "CSS", "Education"],
+        link: "https://www.betterfutureacad.com/",
+        imgsrc: "images/bfa-project.jpg",
+        imgalt: "Better Future Academy"
+    },
 ]
 
 
@@ -42,14 +52,54 @@ let projectsList = document.querySelector('#project-grid');
 
 // CAROUSEL ELEMENTS AND VARIABLES
 let currentIndex = 0;  // Where we start
-const itemsPerPage = 3; // How many projects are shown at once
+const carouselBreakpoint = window.matchMedia('(max-width: 950px)');
+let itemsPerPage = getItemsPerPage();
 const nextButton = document.querySelector("#next-btn");
 const previousButton = document.querySelector("#previous-btn");
+
+function getItemsPerPage() {
+    return carouselBreakpoint.matches ? 1 : 3;
+}
+
+function updateCarouselState() {
+    const maxIndex = Math.max(currentProjectsShown.length - itemsPerPage, 0);
+
+    currentIndex = Math.min(currentIndex, maxIndex);
+    previousButton.disabled = currentIndex === 0;
+    nextButton.disabled = currentIndex === maxIndex;
+}
+
+// Mobile navigation
+const header = document.querySelector('header');
+const menuButton = document.querySelector('.menu-button');
+const navigationLinks = document.querySelectorAll('.nav-links a');
+
+function setMenuOpen(isOpen) {
+    header.dataset.menuOpen = isOpen;
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+    menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+}
+
+menuButton.addEventListener('click', () => {
+    setMenuOpen(header.dataset.menuOpen !== 'true');
+});
+
+navigationLinks.forEach(link => {
+    link.addEventListener('click', () => setMenuOpen(false));
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && header.dataset.menuOpen === 'true') {
+        setMenuOpen(false);
+        menuButton.focus();
+    }
+});
 
 let currentProjectsShown = projects;
 
 function displayProjects() {
-    
+    updateCarouselState();
+
     // Any projects currently on display must be removed so that we can use the filters to display only the selected projects later.
     projectsList.innerHTML = "";
 
@@ -120,6 +170,12 @@ previousButton.addEventListener('click', () => {
         displayProjects(); // Re-render with the new index
     }
 });
+
+carouselBreakpoint.addEventListener('change', () => {
+    itemsPerPage = getItemsPerPage();
+    displayProjects();
+});
+
 // Display all projects for the first time
 displayProjects();
 

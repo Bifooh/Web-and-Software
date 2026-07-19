@@ -99,6 +99,7 @@ header {
 }
 
 .nav-links {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     gap: 34px;
@@ -127,11 +128,23 @@ header {
 
 .menu-button {
     display: none;
+    width: 42px;
+    height: 42px;
+    padding: 9px 7px;
     border: none;
     background: none;
-    font-size: 1.7rem;
     color: var(--text-dark);
     cursor: pointer;
+}
+
+.menu-button-line {
+    display: block;
+    width: 28px;
+    height: 2px;
+    margin: 5px auto;
+    border-radius: 999px;
+    background-color: currentColor;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 /* General sections */
@@ -309,6 +322,11 @@ header {
     color: var(--navy);
     font-size: 1.1rem;
     cursor: pointer;
+}
+
+.carousel-controls button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 /* Projects */
@@ -565,12 +583,58 @@ header {
 /* Tablet */
 
 @media (max-width: 950px) {
-    .nav-links {
+    header {
+        flex-wrap: wrap;
+    }
+
+    hr {
         display: none;
+    }
+
+    .brand {
+        order: 1;
+    }
+
+    .nav-links {
+        order: 3;
+        flex-basis: 100%;
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.25s ease;
     }
 
     .menu-button {
         display: block;
+        order: 2;
+        margin-left: auto;
+    }
+
+    .nav-links a {
+        padding: 10px 0;
+    }
+
+    header[data-menu-open="true"] .nav-links {
+        max-height: 320px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    header[data-menu-open="true"] .menu-button-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    header[data-menu-open="true"] .menu-button-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    header[data-menu-open="true"] .menu-button-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
     }
 
     .hero {
@@ -583,7 +647,7 @@ header {
         justify-content: flex-start;
     }
 
-    .project-grid {
+    #project-grid {
         grid-template-columns: 1fr;
     }
 
@@ -655,10 +719,6 @@ header {
         align-items: flex-start;
     }
 
-    .carousel-controls {
-        display: none;
-    }
-
     .filter-pills {
         overflow-x: auto;
         flex-wrap: nowrap;
@@ -671,6 +731,11 @@ header {
 
     .project-card {
         display: block;
+    }
+
+    .project-card img {
+        height: auto;
+        aspect-ratio: 16 / 10;
     }
 
     .skills-grid {

@@ -18,7 +18,7 @@
             </div>
         </a>
 
-        <nav class="nav-links">
+        <nav class="nav-links" id="site-navigation">
             <a href="#">Home</a>
             <a href="#projects">Projects</a>
             <a href="#about">About</a>
@@ -26,13 +26,17 @@
             <a href="#contact">Contact</a>
         </nav>
 
-        <button class="menu-button" aria-label="Open menu">☰</button>
+        <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-navigation">
+            <span class="menu-button-line"></span>
+            <span class="menu-button-line"></span>
+            <span class="menu-button-line"></span>
+        </button>
     </header>
 
     <main>
         <section id="home" class="hero section">
             <div class="hero-text">
-                <p class="eyebrow">Hi, I'm</p>
+                <p class="eyebrow">Hi!, I'm</p>
                 <h1>Samuel Pereira</h1>
                 <!-- <h2>Web & Software Developer</h2> -->
 
@@ -74,10 +78,10 @@
                 <button class="pill active" data-filter="all">All</button>
                 <button class="pill" data-filter="Landing Page">Landing Page</button>
                 <button class="pill" data-filter="Web App">Web App</button>
-                <button class="pill" data-filter="Education">Education</button>
-                <button class="pill" data-filter="React">React</button>
-                <button class="pill" data-filter="Node.js">Node.js</button>
-                <button class="pill" data-filter="JS">JavaScript</button>
+                <!-- <button class="pill" data-filter="Education">Education</button> -->
+                <!-- <button class="pill" data-filter="React">React</button> -->
+                <!-- <button class="pill" data-filter="Node.js">Node.js</button> -->
+                <!-- <button class="pill" data-filter="JS">JavaScript</button> -->
                 <button class="pill" data-filter="Game">Games</button>
             </div>
 
@@ -164,7 +168,7 @@
 
             <div class="skill-card">
             <img src="images/icons/c.png" alt="c# icon" />
-            <p>VideoGames</p>
+            <p>OOP</p>
             </div>
         </div>
         </section>
