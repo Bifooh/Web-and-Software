@@ -24,6 +24,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 112px;
 }
 
 body {
@@ -109,6 +110,10 @@ header {
 
 .nav-links a {
     position: relative;
+}
+
+.nav-links a:nth-child(4) {
+    display: none;
 }
 
 .nav-links a::after {
@@ -306,25 +311,68 @@ header {
     color: var(--white);
 }
 
-/* Carousel buttons */
-
-.carousel-controls {
-    display: flex;
-    gap: 10px;
+.pill[data-filter="all"] {
+    background-color: #e7eef3;
+    color: var(--navy);
 }
 
-.carousel-controls button {
-    width: 38px;
-    height: 38px;
+.pill[data-filter="Landing Page"],
+.project-type[data-type="Landing Page"] {
+    background-color: #fff2dc;
+    color: #8a541d;
+}
+
+.pill[data-filter="Web App"],
+.project-type[data-type="Web App"] {
+    background-color: #e1f3f1;
+    color: #086566;
+}
+
+.pill[data-filter="all"].active {
+    background-color: var(--navy);
+    color: var(--white);
+}
+
+.pill[data-filter="Landing Page"].active {
+    background-color: var(--gold);
+    color: var(--dark-navy);
+}
+
+.pill[data-filter="Web App"].active {
+    background-color: var(--teal);
+    color: var(--white);
+}
+
+/* Project carousel */
+
+.projects-carousel {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    align-items: center;
+    gap: 14px;
+}
+
+.carousel-button {
+    width: 42px;
+    height: 42px;
     border-radius: 999px;
     border: 1px solid var(--medium-gray);
     background-color: var(--white);
     color: var(--navy);
-    font-size: 1.1rem;
+    box-shadow: 0 6px 16px rgba(15, 66, 88, 0.12);
+    font-size: 1.2rem;
     cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
-.carousel-controls button:disabled {
+.carousel-button:hover:not(:disabled),
+.carousel-button:focus-visible {
+    color: var(--white);
+    background-color: var(--navy);
+    transform: scale(1.06);
+}
+
+.carousel-button:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
@@ -401,10 +449,25 @@ header {
 }
 
 .project-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
     margin-top: 6px;
-    color: var(--navy);
+    padding: 0 18px;
+    border: 2px solid var(--navy);
+    border-radius: 8px;
+    color: var(--white);
+    background-color: var(--navy);
+    box-shadow: 0 8px 18px rgba(15, 66, 88, 0.18);
     font-weight: 800;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 11px 22px rgba(15, 66, 88, 0.26);
 }
 
 /* About */
@@ -596,10 +659,16 @@ header {
     }
 
     .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
         order: 3;
-        flex-basis: 100%;
         flex-direction: column;
         gap: 0;
+        padding: 0 min(4%, 30px);
+        background-color: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 14px 24px rgba(15, 66, 88, 0.12);
         max-height: 0;
         overflow: hidden;
         opacity: 0;
@@ -618,8 +687,13 @@ header {
         padding: 10px 0;
     }
 
+    .nav-links a:nth-child(4) {
+        display: block;
+    }
+
     header[data-menu-open="true"] .nav-links {
         max-height: 320px;
+        padding-bottom: 14px;
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
@@ -719,6 +793,16 @@ header {
         align-items: flex-start;
     }
 
+    .projects-carousel {
+        grid-template-columns: 38px minmax(0, 1fr) 38px;
+        gap: 6px;
+    }
+
+    .carousel-button {
+        width: 38px;
+        height: 38px;
+    }
+
     .filter-pills {
         overflow-x: auto;
         flex-wrap: nowrap;
@@ -744,6 +828,13 @@ header {
 
     .cta-section {
         padding: 30px 22px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .cta-section .button-row {
+        width: 100%;
+        justify-content: center;
     }
 
     .site-footer {

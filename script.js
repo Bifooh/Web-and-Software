@@ -1,48 +1,20 @@
 const projects = [
     {
-        type: "Web App", 
-        title: "BFA Web App", 
-        description: "Education platform for English learners, mentors, scheduling, and practice tools",
-        tags: ["React", "Node.js", "MySQL", "Education"],
-        link: "https://beta.betterfutureacad.com",
-        imgsrc: "images/bfa-app.jpg",
+        type: "Web App",
+        title: "Better Future Academy",
+        description: "Education platform",
+        tags: ["Node.js", "MySQL", "React"],
+        link: "https://app.betterfutureacad.com",
+        imgsrc: "images/BFACAD_icon.png",
         imgalt: "Better Future Academy"
     },
     {
-        type: "Landing Page", 
-        title: "Harmon’s Heating & Cooling", 
-        description: "Modern website for a local HVAC business focused on trust and mobile experience.",
-        tags: ["HTML", "CSS", "JS"],
-        link: "https://preview.harmonsheatingandair.com/",
-        imgsrc: "images/harmons-project.jpg",
-        imgalt: "Harmon's Heating and Cooling project preview"
-    },
-    {
-        type: "Game", 
-        title: "Spanish Challenge", 
-        description: "Showing the kind of fun you can fun while learning a language.",
-        tags: ["Live Challenge", "React", "Node.js"],
-        link: "https://demo.betterfutureacad.com/",
-        imgsrc: "images/spanish-challenge.jpg",
-        imgalt: "Game example"
-    },
-        {
-        type: "Game", 
-        title: "Pixel Quest", 
-        description: "Small 2D game experiment built with JavaScript and creative coding ideas..",
-        tags: ["JavaScript", "React", "Node.js"],
-        link: "#",
-        imgsrc: "images/game-project.jpg",
-        imgalt: "Game example"
-    },
-
-        {
-        type: "Landing Page", 
-        title: "Better Future Academy", 
-        description: "Education platform for English learners, mentors, scheduling, and practice tools",
-        tags: ["JavaScript", "HTML", "CSS", "Education"],
+        type: "Landing Page",
+        title: "Better Future Academy",
+        description: "Pre-launch landing page.",
+        tags: ["HTML", "CSS", "JavaScript"],
         link: "https://www.betterfutureacad.com/",
-        imgsrc: "images/bfa-project.jpg",
+        imgsrc: "images/BFACAD_icon.png",
         imgalt: "Better Future Academy"
     },
 ]
@@ -120,7 +92,7 @@ function displayProjects() {
             <img src="${project.imgsrc}" alt="${project.imgalt}"/>
 
                 <div class="project-content">
-                    <p class="project-type">${project.type}</p>
+                    <p class="project-type" data-type="${project.type}">${project.type}</p>
                     <h3>${project.title}</h3>
                     <p>
                     ${project.description}
@@ -130,7 +102,7 @@ function displayProjects() {
                     ${DisplayTags(project.tags)}
                     </div>
 
-                    <a href="${project.link}" class="project-link" target="_blank">View Project ↗</a>
+                    <a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer">See Project</a>
                 </div>
         `
         article.innerHTML = html;

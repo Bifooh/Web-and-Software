@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <a href="#" class="brand">
+        <a href="#home" class="brand">
             <img src="images/sp-logo.webp" alt="SP logo" class="brand-logo"/>
             <div>
                 <p class="brand-name">Samuel Pereira</p>
@@ -19,7 +19,7 @@
         </a>
 
         <nav class="nav-links" id="site-navigation">
-            <a href="#">Home</a>
+            <a href="#home">Home</a>
             <a href="#projects">Projects</a>
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
@@ -36,22 +36,22 @@
     <main>
         <section id="home" class="hero section">
             <div class="hero-text">
-                <p class="eyebrow">Hi!, I'm</p>
+                <p class="eyebrow">Hi, I'm</p>
                 <h1>Samuel Pereira</h1>
                 <!-- <h2>Web & Software Developer</h2> -->
 
                 <p class="hero-description">
-                    I build Landing Pages, Web Apps, and Custom Tools that help businesses look professional and work better.
+                    And I love building software.
                 </p>
 
                 <div class="hero-details">
                 <span>📍 From Venezuela</span>
-                <span>🎓 Software Engineering Student in BYU-Idaho</span>
+                <span>🎓 Software Engineering Student at BYU-Idaho</span>
                 </div>
 
                 <div class="button-row">
-                <a href="#projects" class="btn primary-btn">View my Work</a>
-                <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                <a href="#projects" class="btn primary-btn">See my work</a>
+                <a href="#contact" class="btn secondary-btn">My contact</a>
                 </div>
             </div>
 
@@ -64,28 +64,23 @@
             <hr>
             <div class="section-heading">
                 <div>
-                <h2>Featured Projects</h2>
-                <p>A selection of my recent work.</p>
+                <h2>Projects</h2>
+                <p>A selection of my most interesting work.</p>
                 </div>
 
-                <div class="carousel-controls">
-                <button aria-label="Previous project" id="previous-btn">←</button>
-                <button aria-label="Next project" id="next-btn">→</button>
-                </div>
             </div>
 
             <div class="filter-pills">
                 <button class="pill active" data-filter="all">All</button>
-                <button class="pill" data-filter="Landing Page">Landing Page</button>
-                <button class="pill" data-filter="Web App">Web App</button>
-                <!-- <button class="pill" data-filter="Education">Education</button> -->
-                <!-- <button class="pill" data-filter="React">React</button> -->
-                <!-- <button class="pill" data-filter="Node.js">Node.js</button> -->
-                <!-- <button class="pill" data-filter="JS">JavaScript</button> -->
-                <button class="pill" data-filter="Game">Games</button>
+                <button class="pill" data-filter="Landing Page">Static Web Pages</button>
+                <button class="pill" data-filter="Web App">Dynamic Apps</button>
+                <!-- <button class="pill" data-filter="Game">Games</button> -->
             </div>
 
-            <div id="project-grid">
+            <div class="projects-carousel">
+                <button class="carousel-button" type="button" aria-label="Previous project" id="previous-btn">←</button>
+                <div id="project-grid"></div>
+                <button class="carousel-button" type="button" aria-label="Next project" id="next-btn">→</button>
             </div>
 
             </section>
@@ -97,18 +92,16 @@
             </div>
 
             <div class="about-text">
-                <h2>About Me</h2>
+                <h2>I'm taller than you think :D</h2>
                 <p>
-                I’m from Venezuela and currently studying Software Engineering in the United States.
-                I love building things with code, learning new technologies, and solving real problems.
+                Music and sports are my favorite leisure activities, but programming has been part of my life since I was 11. I created my first simple website and video game around age 12, and I have loved building software ever since.
                 </p>
 
                 <p>
-                My goal is to create useful software that helps businesses, students, and communities
-                grow, especially in education, web development, and interactive experiences.
+                On a more personal level, I've learned what it's like to feel out of place. When I was 12, my parents, twin sisters, and I moved from Venezuela to Colombia. That year, 2017, the number of Venezuelan immigrants more than doubled, growing from around 500,000 to over a million. This naturally brought a lot of frustration toward our fellow Venezuelans. However, my family and I learned a lot from that experience, and we now enjoy the blessings that come from working diligently to achieve our goals. We moved to the U.S. in 2024 and have loved it! I'm 6'4", by the way...
                 </p>
 
-                <a href="#contact" class="btn primary-btn small-btn">Contact Me</a>
+                <a href="#contact" class="btn primary-btn small-btn">More</a>
             </div>
         </section>
 
@@ -116,7 +109,7 @@
         <div class="section-heading">
             <div>
             <h2>Skills & Tools</h2>
-            <p>Technologies and tools I use.</p>
+            <!-- <p>Technologies and tools I use.</p> -->
             </div>
         </div>
 
@@ -175,15 +168,15 @@
 
         <section id="contact" class="section cta-section">
         <div class="cta-content">
-            <h2>Let’s build something useful.</h2>
+            <h2>Let’s build something!</h2>
             <p>
-            I’m always open to new projects, collaborations, and interesting ideas.
-            </p>
+            <!-- I’m always open to new projects, collaborations, and interesting ideas.
+            </p> -->
         </div>
 
         <div class="button-row">
-            <a href="mailto:per25024@byui.edu" class="btn accent-btn">Send me an Email</a>
-            <a href="https://www.linkedin.com/in/samuel-j-pereira-t/" class="btn dark-outline-btn" target="_blank">View My LinkedIn</a>
+            <a href="mailto:per25024@byui.edu" class="btn accent-btn">Send me an email</a>
+            <a href="https://www.linkedin.com/in/samuel-j-pereira-t/" class="btn dark-outline-btn" target="_blank" rel="noopener noreferrer">View My LinkedIn</a>
         </div>
         </section>
     </main>
@@ -200,9 +193,9 @@
     <p class="copyright">© 2026 Samuel Pereira. All rights reserved.</p>
 
     <div class="footer-links">
-      <h3>Let’s Connect</h3>
-      <a href="https://github.com/bifooh" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/samuel-j-pereira-t/" target="_blank">LinkedIn</a>
+      <h3>Connect</h3>
+      <a href="https://github.com/bifooh" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/samuel-j-pereira-t/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="mailto:per25024@byui.edu">Email</a>
     </div>
   </footer>
