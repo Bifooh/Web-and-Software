@@ -1,22 +1,38 @@
 const projects = [
     {
-        type: "Web App",
+        categories: ["Web App", "Landing Page"],
         title: "Better Future Academy",
-        description: "Education platform",
-        tags: ["Node.js", "MySQL", "React"],
-        link: "https://app.betterfutureacad.com",
-        imgsrc: "images/BFACAD_icon.png",
-        imgalt: "Better Future Academy"
+        description: "An all-in-one English learning platform (A1–B2) combining live scheduling, interactive practice exercises, and unit-based lessons. Built to streamline language acquisition through intuitive student features and administrative tools.",
+        tags: ["Node.js", "Stripe", "JWT Auth"],
+        links: [
+            { label: "Visit website", url: "https://www.betterfutureacad.com/" }
+        ],
+        imgsrc: "images/bfa_desktop.png",
+        imgalt: "Better Future Academy platform preview"
     },
     {
-        type: "Landing Page",
-        title: "Better Future Academy",
-        description: "Pre-launch landing page.",
-        tags: ["HTML", "CSS", "JavaScript"],
-        link: "https://www.betterfutureacad.com/",
-        imgsrc: "images/BFACAD_icon.png",
-        imgalt: "Better Future Academy"
+        categories: ["Web App", "Landing Page"],
+        title: "Tally Turn",
+        description: "A streamlined, reliable time-tracking web app designed for small businesses to monitor team hours effortlessly. Features location verification and flexible company customization to keep workforce management simple, secure, and accurate.",
+        tags: ["ChatGPT", "Stripe", "Supabase"],
+        links: [
+            { label: "Try demo", url: "https://tallyturn.app/demo" },
+            { label: "Visit website", url: "https://tallyturn.app/" }
+        ],
+        imgsrc: "images/tt_desktop.png",
+        imgalt: "Tally Turn time-tracking app preview"
     },
+    {
+        categories: ["Game"],
+        title: "La República del Platanal",
+        description: "A lightweight, web-based multiplayer game built to bring family together from anywhere in the world. Designed for instant access using a simple 4-digit PIN code, ensuring smooth play across low-bandwidth connections and any device.",
+        tags: ["Socket.IO", "TypeScript", "Supabase"],
+        links: [
+            { label: "Play game", url: "https://la-republica-del-platanal.vercel.app/" }
+        ],
+        imgsrc: "images/republic_platanal.png",
+        imgalt: "La República del Platanal game preview"
+    }
 ]
 
 
@@ -28,6 +44,7 @@ const carouselBreakpoint = window.matchMedia('(max-width: 950px)');
 let itemsPerPage = getItemsPerPage();
 const nextButton = document.querySelector("#next-btn");
 const previousButton = document.querySelector("#previous-btn");
+const phoneBreakpoint = window.matchMedia('(max-width: 600px)');
 
 function getItemsPerPage() {
     return carouselBreakpoint.matches ? 1 : 3;
@@ -92,17 +109,21 @@ function displayProjects() {
             <img src="${project.imgsrc}" alt="${project.imgalt}"/>
 
                 <div class="project-content">
-                    <p class="project-type" data-type="${project.type}">${project.type}</p>
+                    <div class="project-types">
+                    ${displayCategories(project.categories)}
+                    </div>
                     <h3>${project.title}</h3>
                     <p>
                     ${project.description}
                     </p>
 
                     <div class="project-tags">
-                    ${DisplayTags(project.tags)}
+                    ${displayTags(project.tags)}
                     </div>
 
-                    <a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer">See Project</a>
+                    <div class="project-links">
+                    ${displayLinks(project.links)}
+                    </div>
                 </div>
         `
         article.innerHTML = html;
@@ -115,17 +136,22 @@ function displayProjects() {
 
 }
 
-// DisplaysProject() complement
-function DisplayTags(tags){
-        // Creating an empty list.
-        let tagsHtml = [];
-        // Adding <span> tags to each html element and adding them to the list.
-        tags.forEach(element => {
-            let tagHtml = `<span>${element}</span>`;
-            tagsHtml.push(tagHtml);
-        })
-        // Return list with all tags in the right format
-        return tagsHtml.join('');
+function displayCategories(categories) {
+    return categories
+        .map(category => `<span class="project-type" data-type="${category}">${category}</span>`)
+        .join('');
+}
+
+function displayTags(tags) {
+    return tags.map(tag => `<span>${tag}</span>`).join('');
+}
+
+function displayLinks(links) {
+    return links
+        .map((link, index) => `
+            <a href="${link.url}" class="project-link${index > 0 ? ' secondary-project-link' : ''}" target="_blank" rel="noopener noreferrer">${link.label}</a>
+        `)
+        .join('');
 }
 // Carousel navigation btns
 nextButton.addEventListener('click', () => {
@@ -142,6 +168,45 @@ previousButton.addEventListener('click', () => {
         displayProjects(); // Re-render with the new index
     }
 });
+
+// Swipe between projects on phones without blocking vertical scrolling.
+let touchStartX = 0;
+let touchStartY = 0;
+let lastSwipeTime = 0;
+
+projectsList.addEventListener('touchstart', event => {
+    const touch = event.changedTouches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+}, { passive: true });
+
+projectsList.addEventListener('touchend', event => {
+    if (!phoneBreakpoint.matches) return;
+
+    const touch = event.changedTouches[0];
+    const horizontalDistance = touch.clientX - touchStartX;
+    const verticalDistance = touch.clientY - touchStartY;
+    const isHorizontalSwipe = Math.abs(horizontalDistance) > 55
+        && Math.abs(horizontalDistance) > Math.abs(verticalDistance) * 1.2;
+
+    if (!isHorizontalSwipe) return;
+
+    lastSwipeTime = Date.now();
+
+    if (horizontalDistance < 0) {
+        nextButton.click();
+    } else {
+        previousButton.click();
+    }
+}, { passive: true });
+
+// Prevent a swipe that begins over a link from opening that link.
+projectsList.addEventListener('click', event => {
+    if (Date.now() - lastSwipeTime < 500) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+}, true);
 
 carouselBreakpoint.addEventListener('change', () => {
     itemsPerPage = getItemsPerPage();
@@ -174,15 +239,11 @@ pills.forEach(pill => {
             currentProjectsShown = projects;
             displayProjects();
         }
-    // if not, we filter the projects list to include only matchings for *type* or *tags*
+    // Otherwise, show projects that belong to the selected category.
         else {         
-            const filtered = projects.filter(project => {
-                const matchesType = project.type === filterValue; // match type
-                const matchesTag = project.tags.includes(filterValue); // match any of the tags
-
-                // return project that match
-                return matchesType || matchesTag;
-            });
+            const filtered = projects.filter(project =>
+                project.categories.includes(filterValue)
+            );
             
             // update info on what is to be shown
             currentProjectsShown = filtered;
@@ -190,4 +251,55 @@ pills.forEach(pill => {
             displayProjects();
         }
     });
+});
+
+/////////////////////      PAGE ANIMATIONS       //////////////////////////////
+
+const revealElements = document.querySelectorAll(`
+    #projects .section-heading,
+    .filter-pills,
+    .projects-carousel,
+    .about-image-wrap,
+    .about-text,
+    #skills .section-heading,
+    .skill-card,
+    .cta-content,
+    .cta-section .button-row,
+    .site-footer > *
+`);
+
+revealElements.forEach(element => {
+    element.classList.add('scroll-reveal');
+
+    if (element.classList.contains('skill-card')) {
+        const skillIndex = [...document.querySelectorAll('.skill-card')].indexOf(element);
+        element.style.setProperty('--reveal-delay', `${(skillIndex % 5) * 70}ms`);
+    }
+
+    if (element.matches('.about-image-wrap, .site-footer > :first-child')) {
+        element.classList.add('reveal-from-left');
+    }
+
+    if (element.matches('.about-text, .site-footer > :last-child')) {
+        element.classList.add('reveal-from-right');
+    }
+});
+
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -45px'
+});
+
+revealElements.forEach(element => revealObserver.observe(element));
+
+document.body.classList.add('motion-ready');
+requestAnimationFrame(() => {
+    document.body.classList.add('page-loaded');
 });
