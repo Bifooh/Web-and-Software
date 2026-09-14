@@ -104,9 +104,14 @@ function displayProjects() {
         
         article.style.setProperty('--i', index); // pass index num as a variable --i
 
+        // The preview uses the first (primary) project link, just like the main card button.
+        const primaryLink = project.links[0];
+
         let html =
         `
-            <img src="${project.imgsrc}" alt="${project.imgalt}"/>
+            <a href="${primaryLink.url}" class="project-image-link" target="_blank" rel="noopener noreferrer" aria-label="Open ${project.title}">
+                <img src="${project.imgsrc}" alt="${project.imgalt}"/>
+            </a>
 
                 <div class="project-content">
                     <div class="project-types">

@@ -414,10 +414,21 @@ header {
     box-shadow: 0 20px 38px rgba(0, 0, 0, 0.12);
 }
 
-.project-card img {
+.project-image-link {
+    display: block;
+    cursor: pointer;
+}
+
+.project-image-link:focus-visible {
+    outline: 3px solid var(--teal);
+    outline-offset: -3px;
+}
+
+.project-image-link img {
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
+    display: block;
 }
 
 .project-content {
@@ -862,7 +873,7 @@ header {
         grid-template-columns: 220px 1fr;
     }
 
-    .project-card img {
+    .project-image-link img {
         height: 100%;
         aspect-ratio: auto;
     }
@@ -963,7 +974,7 @@ header {
         display: block;
     }
 
-    .project-card img {
+    .project-image-link img {
         height: auto;
         aspect-ratio: 16 / 10;
     }
